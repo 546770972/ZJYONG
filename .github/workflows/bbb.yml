@@ -1,0 +1,91 @@
+
+# This workflow will do a clean install of node dependencies, build the source code and run tests across different versions of node
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-nodejs-with-github-actions
+
+name: 中青自动阅读
+
+on:
+  workflow_dispatch:
+  schedule:
+     - cron: '0 0 1 * *'
+  watch:
+    types: started
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.repository.owner.id == github.event.sender.id
+    env:
+      bbb_ck: ${{ secrets.bbb_ck }}
+      bbb_ck2: ${{ secrets.bbb_ck2 }}
+      bbb_ck3: ${{ secrets.bbb_ck3 }}
+      bbb_ck4: ${{ secrets.bbb_ck4 }}
+      bbb_ck5: ${{ secrets.bbb_ck5 }}
+      bbb_ck6: ${{ secrets.bbb_ck6 }}
+      bbb_ck7: ${{ secrets.bbb_ck7 }}
+      bbb_ck8: ${{ secrets.bbb_ck8 }}
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js 12.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: npm install
+        run: |
+          npm install
+          
+      - name: '运行 【步步宝一】'
+        if: env.bbb_ck
+        run: |
+          node Task/BBB.js
+        env:
+          bbb_ck: ${{ secrets.bbb_ck }}
+
+      - name: '运行 【步步宝二】'
+        if: env.bbb_ck2
+        run: |
+          node Task/BBB.js
+        env:
+          YOUTH_READ: ${{ secrets.bbb_ck2 }}
+          
+      - name: '运行 【步步宝三】'
+        if: env.bbb_ck3
+        run: |
+          node Task/BBB.js
+        env:
+          YOUTH_READ: ${{ secrets.bbb_ck3 }}
+          
+      - name: '运行 【步步宝四】'
+        if: env.bbb_ck4
+        run: |
+          node Task/BBB.js
+        env:
+          YOUTH_READ: ${{ secrets.bbb_ck4 }}
+          
+      - name: '运行 【步步宝五】'
+        if: env.bbb_ck5
+        run: |
+          node Task/BBB.js
+        env:
+          YOUTH_READ: ${{ secrets.bbb_ck5}}
+          
+      - name: '运行 【步步宝六】'
+        if: env.bbb_ck6
+        run: |
+          node Task/BBB.js
+        env:
+          YOUTH_READ: ${{ secrets.bbb_ck6 }}
+          
+      - name: '运行 【步步宝七】'
+        if: env.bbb_ck7
+        run: |
+          node Task/BBB.js
+        env:
+          YOUTH_READ: ${{ secrets.bbb_ck7 }}
+          
+      - name: '运行 【步步宝八】'
+        if: env.bbb_ck8
+        run: |
+          node Task/BBB.js
+        env:
+          YOUTH_READ: ${{ secrets.bbb_ck8 }}
